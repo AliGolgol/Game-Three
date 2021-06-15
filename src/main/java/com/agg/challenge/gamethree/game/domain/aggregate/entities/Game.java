@@ -32,7 +32,7 @@ import static com.agg.challenge.gamethree.player.domain.PlayerType.*;
 public class Game {
     String id;
     GameState state;
-    static List<Player> players = new ArrayList<>();
+    List<Player> players = new ArrayList<>();
     int currentPlayer = 0;
     Winner winnerLogic;
     String MAX_RANGE;
