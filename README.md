@@ -13,21 +13,21 @@ I used the hexagonal and onion architectures, so you can find Application(inboun
 When the state is changed within a domain, it raises an event that is listened to by outbound in the Application layer, then it is published by the broker in Infrastructure.
 
 ## Solution
-Using rich domain model instead of anemic domain model, hence data and behaviour sit together. There are three aggregates which are Game, Player ,and Game Round. I used circle array to manage Player's turn and **Repository Pattern** to save and restore output of each move
-,**Visitor Pattern** to handle Human and Machine play, and **Pub-sub Pattern** to publish event to Game, Player, GameRound components
+Using a rich domain model instead of an anemic domain model, hence data and behavior sit together. There are three aggregates which are Game, Player, and Game Round. I used circle array to manage Player's turn and **Repository Pattern** to save and restore output of each move
+,**Visitor Pattern** to handle Human and Machine play and **Pub-sub Pattern** to publish event to Game, Player, GameRound components
 
-**As soon as** a player defines its name and which player he/she wants to 
-play(with Human or Machine). It is persisted at the Player component,
+**As soon as** a player defines its name and which player he/she wants to play(with Human or Machine). It is persisted at the Player component,
 then raise an event, which is listened by Player **Outbound** and publish by Broker at the **Infrastructure**,
-to the Game component to crate and initialize a game, and generate a random number to start.
+to the Game, component to create and initialize a game, and generate a random number to start.
 
 **Game** component gets an event at **CommandService(Application Layer)** then it calls the Game Aggregate's method to create/initialize a game.
 
-The same thing happen between **Game** and **Game Round** components. Game Round just persist the game round to be used as a reporting service.
+The same thing happens between **Game** and **Game Round** components. Game Round just persists the game round to be used as a reporting service.
+
 ## Config
-The main and test project has its own application.properties, so you can config each base on your criteria
+The main and test project has its own application. Properties, so you can config each base on your criteria.
 ## Configuration
-- to configure the application set the `resources/application.properties`
+- to configure the application, set the `resources/application.properties`
 - to change logging level set in the `resources/log4j.properties`
 ## Requirements
 - java 11
